@@ -4,7 +4,6 @@ An end-to-end OTC Trade Lifecycle Intelligence platform integrating Business Ana
 
 ![1791482829811](image/README/1791482829811.png)
 
-
 ## Phase 1 — Business & Domain Foundation
 
 ### Objective
@@ -40,3 +39,34 @@ Manual trade capture and re-keying can introduce incorrect trade details, leadin
 ### Expected Outcome
 
 A documented business foundation with defined requirements, standardised trade data, measurable KPIs, and a traceable trade scenario to support solution design and implementation in Phase 2.
+
+
+## Phase 2 — Requirements, Solution & System Design
+
+### Objective
+
+Translate business requirements into a structured, scalable technical solution for **NorthBridge TradeFlow**, defining system architecture, data flows, functional requirements, and implementation boundaries.
+
+### Scope & Key Activities
+
+- **Business Process Design:** Define the TO-BE trade lifecycle using BPMN, including trade capture, amendment, cancellation, and human approval.
+- **Requirements Engineering:** Specify functional requirements (FRs), non-functional requirements (NFRs), user stories, and acceptance criteria.
+- **Solution Architecture:** Design the high-level architecture (HLD), system integrations, and trust boundaries.
+- **Data Modelling:** Define trade, counterparty, product, validation, event, and reporting entities.
+- **API & Security Design:** Establish API contracts, error handling, access roles, and audit requirements.
+- **Agile Planning:** Prioritise requirements using MoSCoW, estimate user stories, maintain a RAID log, and establish a Requirements Traceability Matrix (RTM).
+
+### Tools & Technologies
+
+`draw.io` · `Markdown` · `Excel` · `Git` · `Agile` · `SDLC`
+
+### Key Deliverables
+
+- `Design.md` — Functional and non-functional requirements, API contracts, and security design.
+- `TO_BE.drawio` — Future-state trade lifecycle process.
+- `HLD.drawio` — High-level solution architecture and system integrations.
+- `Delivery_Tracker.xlsx` — Product backlog, MoSCoW prioritisation, story estimates, RAID log, and RTM.
+
+### Expected Outcome
+
+A clearly defined and traceable solution blueprint with agreed data contracts, system architecture, security requirements, and prioritised implementation scope, providing the foundation for **Phase 3 — Data Engineering & Governance**.
