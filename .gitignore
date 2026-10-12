@@ -218,3 +218,55 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local Azure credentials
+.env
+**/.env
+
+# Local Azure data backup
+azure_backup/
+
+# Local ingestion audit records
+Phase_3_Data_Engineering/ingestion/audit/*.jsonl
+
+
+# ==========================================
+# NorthBridge TradeFlow - Security
+# ==========================================
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+*.secret
+secrets/
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.p8
+id_rsa
+id_ed25519
+
+# Local Snowflake configuration
+profiles.yml
+.snowflake/
+connections.toml
+
+# Azure credentials and backups
+.azure/
+azure_backup/
+
+# Generated pipeline logs
+Phase_3_Data_Engineering/logs/
+Phase_3_Data_Engineering/ingestion/audit/*.jsonl
+
+# Local editor settings
+.vscode/
+
+# dbt generated artifacts
+**/target/
+**/dbt_packages/
+**/logs/

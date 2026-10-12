@@ -962,8 +962,6 @@ The logical design will guide the physical warehouse and dbt implementation in P
 | Reporting Outcome | Final simulated acceptance or rejection for an attempt            | report_id               |
 | Change Request    | Proposed amendment or cancellation awaiting a controlled decision | request_id              |
 
-
-
 ### 11.3 Entity Relationships
 
 1. One counterparty may be associated with many trades.
@@ -2139,8 +2137,6 @@ A release is accepted only when:
 | ISS-001 | Azure and Snowflake availability is user-confirmed, but permissions, provisioning, compute configuration, cost limits and connectivity remain unverified | Open   | Verify and record technical readiness and agreed cost limits before Phase 3 |
 | ISS-002 | Logical schema not yet reconciled field-by-field with Phase 1 data dictionary                                                                            | Open   | Complete schema mapping                                                     |
 | ISS-003 | Final ML training dataset and label-generation approach not yet approved                                                                                 | Open   | Define before model development                                             |
-
-
 
 #### External and Technical Dependencies
 

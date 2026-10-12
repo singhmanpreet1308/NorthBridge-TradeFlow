@@ -1,0 +1,2 @@
+batch_id,validation_run_id,validated_at_utc,validation_policy_version,total_trades,curated_records,quarantine_records,manifest_tests_passed,manifest_tests_total,status
+BATCH-60FD5666D0A1FBAD,VAL-E6532CDFF204,2026-10-10T22:47:47.940045+00:00,1.1,50,49,1,10,10,VALIDATED

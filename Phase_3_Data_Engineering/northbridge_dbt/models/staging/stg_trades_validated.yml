@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_trades_validated
+    description: "Validated OTC interest-rate swap trades."
+
+    columns:
+      - name: TRADE_ID
+        description: "Unique identifier for each trade."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: VALIDATION_STATUS
+        description: "Validation result assigned to the trade."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['PASS']

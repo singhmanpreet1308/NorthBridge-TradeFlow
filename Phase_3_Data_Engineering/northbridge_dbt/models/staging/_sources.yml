@@ -1,0 +1,13 @@
+
+version: 2
+
+sources:
+  - name: curated
+    description: "Validated trade data ingested into Snowflake."
+    database: NORTHBRIDGE_TRADEFLOW
+    schema: CURATED
+
+    tables:
+      - name: trades_validated
+        identifier: TRADES_VALIDATED
+        description: "Validated OTC interest-rate swap trades."
