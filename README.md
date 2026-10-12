@@ -86,11 +86,21 @@ Build a reliable, scalable, and governed data foundation for **NorthBridge Trade
 - **Data Governance:** Define data ownership, classification, lineage, and access controls.
 - **Trade Versioning:** Preserve original and amended T-1001 trade records with complete audit traceability.
 
-![1791842211759](image/README/1791842211759.png)
+### Data Pipeline Architecture
+
+The pipeline follows an end-to-end data engineering workflow:
+
+**Source → Ingestion → Validation → Warehousing → Transformation → Analytics**
+
+Synthetic OTC trade data is ingested into **Azure ADLS Gen2**, validated and standardised using **Python/PySpark**, and loaded into **Snowflake**. **dbt** transforms the data into trusted reporting marts, while **Apache Airflow** orchestrates pipeline execution, retries, and monitoring. Invalid records are quarantined, and trade version history is preserved for auditability.
+
+The curated datasets support **Power BI analytics (Phase 4)** and **predictive risk modelling (Phase 5)**.
 
 ### Tools & Technologies
 
 `Azure ADLS Gen2` · `Python` · `PySpark` · `Apache Airflow` · `Snowflake` · `SQL` · `dbt` · `Microsoft Purview (Optional)`
+
+![1791842508203](image/README/1791842508203.png)
 
 ### Key Deliverables
 
