@@ -40,7 +40,6 @@ Manual trade capture and re-keying can introduce incorrect trade details, leadin
 
 A documented business foundation with defined requirements, standardised trade data, measurable KPIs, and a traceable trade scenario to support solution design and implementation in Phase 2.
 
-
 ## Phase 2 — Requirements, Solution & System Design
 
 ### Objective
@@ -70,3 +69,40 @@ Translate business requirements into a structured, scalable technical solution f
 ### Expected Outcome
 
 A clearly defined and traceable solution blueprint with agreed data contracts, system architecture, security requirements, and prioritised implementation scope, providing the foundation for **Phase 3 — Data Engineering & Governance**.
+
+## Phase 3 — Data Engineering & Governance
+
+### Objective
+
+Build a reliable, scalable, and governed data foundation for **NorthBridge TradeFlow**, enabling automated trade ingestion, validation, transformation, and analytics-ready data delivery.
+
+### Scope & Key Activities
+
+- **Data Ingestion:** Land synthetic OTC trade data in Azure Data Lake Storage Gen2 with timestamps, run IDs, and checksums.
+- **ETL Pipeline:** Develop Python and PySpark workflows for data cleansing, standardisation, and validation.
+- **Data Warehousing:** Build Snowflake staging, core, and reporting tables using SQL and dbt.
+- **Workflow Orchestration:** Automate ingestion, validation, transformation, and testing using Apache Airflow with retry and failure handling.
+- **Data Quality:** Implement schema validation, duplicate detection, reconciliation, and quarantine of invalid records.
+- **Data Governance:** Define data ownership, classification, lineage, and access controls.
+- **Trade Versioning:** Preserve original and amended T-1001 trade records with complete audit traceability.
+
+![1791842211759](image/README/1791842211759.png)
+
+### Tools & Technologies
+
+`Azure ADLS Gen2` · `Python` · `PySpark` · `Apache Airflow` · `Snowflake` · `SQL` · `dbt` · `Microsoft Purview (Optional)`
+
+### Key Deliverables
+
+- `pipeline/` — Automated ingestion and transformation workflows.
+- `dbt/` — SQL transformation models and data quality tests.
+- `Data_Model.md` — Warehouse schema and entity relationships.
+- `Data_Quality_Plan.md` — Validation rules and reconciliation strategy.
+- `Governance.md` — Data ownership, classification, and lineage.
+- **Execution Evidence** — Pipeline logs, test results, and curated datasets.
+
+### Expected Outcome
+
+A reproducible, quality-controlled data pipeline that transforms raw OTC trade records into trusted, analytics-ready datasets while maintaining trade history, auditability, and data governance.
+
+**Next:** Phase 4 — Analytics & Regulatory Intelligence.
