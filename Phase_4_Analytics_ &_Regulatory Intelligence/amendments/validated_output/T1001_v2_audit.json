@@ -1,0 +1,13 @@
+{
+    "trade_id": "T-1001",
+    "trade_version": 2,
+    "approval_reference": "NB-T1001-APP-001",
+    "approval_timestamp_utc": "2026-10-14T12:00:00Z",
+    "validation_run_id": "VAL-90BA7E7183AC",
+    "validated_at_utc": "2026-10-14T12:36:59.780679+00:00",
+    "validation_status": "PASS",
+    "detected_rules": [],
+    "source_checksum_sha256": "1eea2e36711f5f47bd656a4e28b703af31f54758864d87c5f4a7a6e407ea0711",
+    "record_count": 1,
+    "status": "VALIDATED_PENDING_INGESTION"
+}

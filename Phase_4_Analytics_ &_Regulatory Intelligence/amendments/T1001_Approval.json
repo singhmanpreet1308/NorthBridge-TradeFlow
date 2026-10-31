@@ -1,0 +1,15 @@
+{
+  "trade_id": "T-1001",
+  "original_version": 1,
+  "amended_version": 2,
+  "original_notional_gbp": 100000000,
+  "corrected_notional_gbp": 10000000,
+  "amendment_reason": "DEMO_NOTIONAL_MISMATCH",
+  "approval_status": "APPROVED",
+  "approved_by": "Project Owner - Trade Operations Reviewer",
+  "approval_reference": "NB-T1001-APP-001",
+  "approval_timestamp_utc": "2026-10-14T12:00:00Z",
+  "amendment_status": "PENDING_EXECUTION",
+  "environment": "SYNTHETIC_DEMONSTRATION"
+}
+

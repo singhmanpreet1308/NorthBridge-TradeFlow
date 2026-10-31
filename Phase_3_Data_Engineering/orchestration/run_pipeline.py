@@ -1,4 +1,4 @@
-
+import json 
 import os
 import sys
 import subprocess
@@ -31,10 +31,29 @@ def run_stage(stage_name, command, cwd=PROJECT_ROOT):
             f"{stage_name} failed with exit code {result.returncode}"
         )
 
-    duration = (datetime.now(timezone.utc) - started).total_seconds()
+    completed = datetime.now(timezone.utc)
+    duration = (completed - started).total_seconds()
 
     print(f"\nCOMPLETED: {stage_name}", flush=True)
     print(f"Duration: {duration:.1f} seconds", flush=True)
+
+    # Save pipeline execution timing
+    log_dir = PROJECT_ROOT / "logs"
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    log_file = log_dir / "pipeline_timing.jsonl"
+
+    record = {
+        "stage": stage_name,
+        "started_at_utc": started.isoformat(),
+        "completed_at_utc": completed.isoformat(),
+        "duration_seconds": round(duration, 2),
+        "status": "SUCCESS"
+    }
+
+    with open(log_file, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record) + "\n")
+
 
 
 def main():

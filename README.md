@@ -115,4 +115,41 @@ The curated datasets support **Power BI analytics (Phase 4)** and **predictive r
 
 A reproducible, quality-controlled data pipeline that transforms raw OTC trade records into trusted, analytics-ready datasets while maintaining trade history, auditability, and data governance.
 
-**Next:** Phase 4 — Analytics & Regulatory Intelligence.
+
+## Phase 4 — Analytics & Regulatory Intelligence
+
+### Objective
+
+Transform validated OTC trade data into actionable business insights through **Power BI reporting, KPI monitoring, regulatory field mapping, and exception analysis**.
+
+### Scope & Key Activities
+
+- **Power BI Dashboard:** Visualise trade volumes, Straight-Through Processing (STP), validation failure rates, simulated reporting rejections, and processing latency.
+- **KPI Development:** Build and reconcile operational KPIs using SQL and Power BI.
+- **Regulatory Field Mapping:** Map trade attributes to simulated reporting fields, documenting transformations and validation rules.
+- **Exception Management:** Analyse validation failures, reconciliation breaks, and simulated reporting rejections.
+- **Trade Monitoring:** Track T-1001's notional mismatch, amendment history, and resolution status.
+- **Business Insights:** Identify key failure drivers and recommend improvements to trade processing and data quality.
+
+### Tools & Technologies
+
+`Power BI` · `SQL` · `Python (Pandas)` · `Excel`
+
+### Key Deliverables
+
+- `NorthBridge.pbix` — Interactive trade monitoring dashboard.
+- `KPI_SQL.sql` — SQL-based KPI calculations and reconciliation.
+- `Regulatory_Field_Mapping.xlsx` — Trade-to-report field mapping.
+- `Validation_Rules.md` — Trade validation rules.
+- `Reject_Handling.md` — Exception handling and resubmission workflow.
+- `Business_Insights.md` — Key findings and recommendations.
+
+### Expected Outcome
+
+An analytics and reporting layer that provides visibility into trade processing performance, data-quality issues, and simulated reporting outcomes, supporting faster exception investigation and operational decision-making.
+
+### Trade Operations Dashboard
+
+The reporting page provides a consolidated view of trade lifecycle performance, validation outcomes, and operational exceptions.
+
+![1793484754266](image/README/1793484754266.png)
