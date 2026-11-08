@@ -115,7 +115,6 @@ The curated datasets support **Power BI analytics (Phase 4)** and **predictive r
 
 A reproducible, quality-controlled data pipeline that transforms raw OTC trade records into trusted, analytics-ready datasets while maintaining trade history, auditability, and data governance.
 
-
 ## Phase 4 — Analytics & Regulatory Intelligence
 
 ### Objective
@@ -153,3 +152,109 @@ An analytics and reporting layer that provides visibility into trade processing 
 The reporting page provides a consolidated view of trade lifecycle performance, validation outcomes, and operational exceptions.
 
 ![1793484754266](image/README/1793484754266.png)
+
+## Phase 5 — Data Science & Predictive Intelligence
+
+### Objective
+
+Develop and evaluate a machine learning solution to **predict simulated OTC trade reporting rejection risk**, identify high-risk transactions before submission, and assess model behaviour against real CME market data.
+
+### Scope & Key Activities
+
+- **Data Preparation:** Generate a reproducible synthetic dataset (~2,000 trades) for model development, separate from the UAT dataset.
+- **Feature Engineering:** Create pre-submission trade features, prevent data leakage, and apply time-based train, validation, and test splits.
+- **Model Development:** Train and compare Dummy Classifier, Logistic Regression, XG-Boost, Random Forest, Cat-Boost models.
+- **Model Evaluation:** Evaluate predictive performance using Precision, Recall, F1-score, PR-AUC, and Confusion Matrix.
+- **Model Explainability:** Use SHAP to identify important features influencing rejection-risk predictions.
+- **T-1001 Risk Prediction:** Generate a model-based rejection probability and risk classification for the project's core trade scenario.
+- **Real CME Data Validation:** Process real GBP OIS transaction records from CME, apply the trained model, and assess prediction behaviour and distribution shift.
+
+### Tools & Technologies
+
+`Python` · `Pandas` · `Scikit-learn` · `XGBoost` · `SHAP` · `Matplotlib` · `CME Market Data`
+
+### Key Deliverables
+
+- Reproducible ML training and evaluation notebook.
+- Feature engineering and preprocessing pipeline.
+- Trained model and performance evaluation.
+- `Model_Card.md` — Model metrics, threshold selection, leakage checks, and limitations.
+- SHAP feature importance analysis.
+- T-1001 trade rejection-risk prediction.
+- External CME data processing and model inference results.
+
+### Model Evaluation & Results
+
+**1. Model Performance Comparison**
+
+Comparison of baseline and candidate models using classification metrics, including PR-AUC.
+
+![1794175041559](image/README/1794175041559.png)
+
+![1794175153943](image/README/1794175153943.png)
+
+**2. Confusion Matrix**
+
+Evaluation of the selected model's predictions against held-out synthetic reporting outcomes.
+
+![1794175201342](image/README/1794175201342.png)
+
+**3. SHAP Feature Importance**
+
+Identification of key features influencing the model's rejection-risk predictions.
+
+![1794175244752](image/README/1794175244752.png)
+
+**4. T-1001 — Trade Rejection Risk Prediction**
+
+Model-generated rejection probability and risk classification for the core trade scenario.
+
+![1794175362775](image/README/1794175362775.png)
+
+![1794175403095](image/README/1794175403095.png)
+
+### Real-World Data Check — CME Market Data
+
+To assess model behaviour beyond synthetic training data, real **CME GBP Overnight Index Swap (OIS)** transaction records were processed and evaluated.
+
+**Data Processing:**
+
+- Processed 44 CME source files.
+- Identified 102 GBP records and excluded 56 inflation-indexed records.
+- Retained 46 GBP OIS records, resulting in **28 unique transactions** after deduplication.
+
+**External Inference Results:**
+
+| Metric                               | Result |
+| ------------------------------------ | ------ |
+| Unique transactions evaluated        | 28     |
+| Below risk threshold                 | 24     |
+| Flagged for review                   | 4      |
+| Outside synthetic training ranges    | 8      |
+| Review alerts within training ranges | 0      |
+
+**5. CME Data Preparation**
+
+Evidence of real market data filtering, cleaning, and deduplication.
+
+![1794175595253](image/README/1794175595253.png)
+
+![1794175621901](image/README/1794175621901.png)
+
+**6. CME Model Prediction Results**
+
+Evidence of model inference on real CME transactions, including risk classifications and out-of-range feature checks.
+
+![1794175690387](image/README/1794175690387.png)
+
+![1794175707629](image/README/1794175707629.png)
+
+### Key Findings & Limitations
+
+- The modelling workflow provides a reproducible approach to estimating simulated trade reporting rejection risk.
+- Real CME data testing demonstrated external inference compatibility, with **4 of 28 transactions flagged for review**.
+- All four review alerts occurred on transactions with features outside synthetic training ranges, indicating potential distribution shift.
+
+### Expected Outcome
+
+An explainable and reproducible predictive intelligence solution combining **synthetic-data model evaluation, trade-level risk scoring, and real-market-data inference testing**, providing the foundation for  ML Engineering & AI Operations Assistant.
