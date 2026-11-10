@@ -1,0 +1,14 @@
+artifact_uri: file:///D:/STUDY/Data_Science_Courses/PROJECTS/14.NorthBridge%20TradeFlow/NorthBridge-TradeFlow/Phase_6_ML%20Engineering/mlruns/394662252900529438/d9664af6a81444cc85e54362fb165b4b/artifacts
+end_time: 1794259164081
+entry_point_name: ''
+experiment_id: '394662252900529438'
+lifecycle_stage: active
+run_id: d9664af6a81444cc85e54362fb165b4b
+run_name: Logistic_Regression_v1.0.0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1794259149907
+status: 3
+tags: []
+user_id: singh

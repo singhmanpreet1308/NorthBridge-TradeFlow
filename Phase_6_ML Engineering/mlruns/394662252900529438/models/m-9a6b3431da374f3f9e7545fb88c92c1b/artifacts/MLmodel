@@ -1,0 +1,23 @@
+artifact_path: file:///D:/STUDY/Data_Science_Courses/PROJECTS/14.NorthBridge%20TradeFlow/NorthBridge-TradeFlow/Phase_6_ML%20Engineering/mlruns/394662252900529438/models/m-9a6b3431da374f3f9e7545fb88c92c1b/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.12.15
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types: null
+mlflow_version: 3.18.0
+model_id: m-9a6b3431da374f3f9e7545fb88c92c1b
+model_size_bytes: 95659
+model_uuid: m-9a6b3431da374f3f9e7545fb88c92c1b
+prompts: null
+run_id: d9664af6a81444cc85e54362fb165b4b
+utc_time_created: '2026-11-09 21:19:10.212895'

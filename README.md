@@ -36,9 +36,11 @@ Manual trade capture and re-keying can introduce incorrect trade details, leadin
 - `seeded_errors.csv` — Intentional data-quality defects.
 - `T1001_Trade_Card.md` — Trade exception and amendment scenario.
 
+![1794257961208](image/README/1794257961208.png)
+
 ### Expected Outcome
 
-A documented business foundation with defined requirements, standardised trade data, measurable KPIs, and a traceable trade scenario to support solution design and implementation in Phase 2.
+A documented business foundation with defined requirements, standardised trade data, measurable KPIs, and a traceable trade scenario to support solution design and implementation in Phase
 
 ## Phase 2 — Requirements, Solution & System Design
 
@@ -65,6 +67,10 @@ Translate business requirements into a structured, scalable technical solution f
 - `TO_BE.drawio` — Future-state trade lifecycle process.
 - `HLD.drawio` — High-level solution architecture and system integrations.
 - `Delivery_Tracker.xlsx` — Product backlog, MoSCoW prioritisation, story estimates, RAID log, and RTM.
+
+![1794257990671](image/README/1794257990671.png)
+
+![1794258071743](image/README/1794258071743.png)
 
 ### Expected Outcome
 
@@ -258,3 +264,136 @@ Evidence of model inference on real CME transactions, including risk classificat
 ### Expected Outcome
 
 An explainable and reproducible predictive intelligence solution combining **synthetic-data model evaluation, trade-level risk scoring, and real-market-data inference testing**, providing the foundation for  ML Engineering & AI Operations Assistant.
+
+
+## Phase 6 — ML Engineering & AI Operations Assistant
+
+### Objective
+
+Deploy the trained trade rejection-risk model as a containerised prediction API and integrate it with an **LLM-powered AI Operations Assistant** for trade investigation, validation analysis, risk assessment, and evidence-based recommendations.
+
+### Scope & Key Activities
+
+- **ML Model Deployment:** Serve the trained model through FastAPI with versioned predictions.
+- **API Development:** Implement `/health` and `/predict` endpoints with structured JSON requests and responses.
+- **Containerisation:** Package the prediction service using Docker, exposing port `8000`.
+- **AI Operations Assistant:** Build an interactive, read-only assistant integrating trade records, validation history, ML predictions, and retrieved knowledge notes.
+- **RAG Integration:** Retrieve relevant domain knowledge and validation rules to generate evidence-backed answers with citations.
+- **Operational Safety:** Separate deterministic validation decisions from predictive risk scores and require human intervention for trade amendments.
+
+### Tools & Technologies
+
+`Python` `MLflow`·`FastAPI` · `Docker` · `Scikit-learn` · `LLM API (GPT-4.1 mini)` · `RAG` · `Streamlit`
+
+### Key Deliverables
+
+- Containerised ML prediction API.
+- REST endpoints for health monitoring and risk prediction.
+- Interactive API documentation using Swagger UI.
+- AI Operations Assistant with trade lookup, validation history, ML scoring, and cited responses.
+- Versioned knowledge notes and read-only investigation workflow.
+
+### System Workflow
+
+```mermaid
+flowchart TD
+    A["User Trade Query"] --> B["AI Operations Assistant"]
+    B --> C["Trade & Validation Lookup"]
+    C --> D["ML Risk Prediction API"]
+    D --> E["Knowledge Retrieval / RAG"]
+    E --> F["LLM — GPT-4.1 mini"]
+    F --> G["Cited Answer & Recommended Actions"]
+```
+
+### Implementation Results & Evidence
+
+**1. Docker — Containerised Prediction API**
+
+The prediction service was packaged in a Docker image named `northbridge-prediction-api`, with port mapping `8000:8000`.![1794268674791](image/README/1794268674791.png)
+
+**2. FastAPI — Prediction Service**
+
+The API exposes two endpoints:
+
+| Endpoint     | Method | Purpose                                   |
+| ------------ | ------ | ----------------------------------------- |
+| `/health`  | GET    | Check API availability                    |
+| `/predict` | POST   | Generate trade rejection-risk predictions |
+
+Swagger UI provides an interactive interface for testing requests and inspecting responses.
+
+![1794268685721](image/README/1794268685721.png)
+
+### Sample API Test Cases
+
+**Test 1 — API Health Check**
+
+```bash
+curl http://localhost:8000/health
+```
+
+Expected: HTTP `200 OK` with a successful health response.
+
+**Test 2 — Predict Trade T-1001 (Original Version)**
+
+```bash
+curl -X POST "http://localhost:8000/predict" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "trade_id": "TEST-001",
+    "notional_amount": 100000000,
+    "tenor_years": 10,
+    "currency": "GBP",
+    "product_type": "IRS",
+    "counterparty_id": "CP-001"
+  }'
+```
+
+Expected: HTTP `200 OK` with the model-generated risk score, classification, and model version.
+
+**Test 3 — Predict T-1001 (Corrected Notional)**
+
+Repeat Test 2 with:
+
+```json
+{
+  "trade_id": "TEST-002",
+  "notional_amount": 10000000,
+  "tenor_years": 10,
+  "currency": "GBP",
+  "product_type": "IRS",
+  "counterparty_id": "CP-001"
+}
+```
+
+Expected: A valid prediction for the corrected trade. A lower risk score is not guaranteed.
+
+**Test 4 — Invalid Input Validation**
+
+Submit a request with a missing required field or invalid data type.
+
+Expected: HTTP `422 Unprocessable Entity` with validation details, assuming FastAPI/Pydantic request validation.
+
+### AI Operations Assistant — Final Implementation
+
+The AI Operations Assistant provides a conversational interface for investigating trade exceptions, reviewing validation evidence, and interpreting ML predictions.
+
+**Demonstrated T-1001 Results:**
+
+- **Original trade (v1):** GBP 100,000,000 notional; blocked by `DEMO_NOTIONAL_MISMATCH`.
+- **Corrected trade (v2):** GBP 10,000,000 notional; passed validation and became eligible for simulated reporting.
+- **ML Risk Score (v2):** `0.078752`, classified as **Not Flagged** against a `0.10` threshold using model version `1.0.0`.
+- **Evidence-Based Response:** The assistant retrieved validation history, cited knowledge notes, and explained why the corrected trade was eligible.
+- **Human Oversight:** The assistant provided recommendations without directly modifying trade records.
+
+**3. AI Operations Assistant — Final Interface**
+
+![1794268713285](image/README/1794268713285.png)
+
+### Expected Outcome
+
+A containerised ML inference service integrated with a read-only, RAG-powered AI Operations Assistant, enabling explainable trade-risk predictions, evidence-based exception investigation, and human-controlled operational decisions.
+
+### Limitations
+
+The system uses synthetic trade and validation records with a model trained on simulated outcomes. Predictions support risk assessment but do not determine regulatory reporting eligibility or establish real-world rejection accuracy.

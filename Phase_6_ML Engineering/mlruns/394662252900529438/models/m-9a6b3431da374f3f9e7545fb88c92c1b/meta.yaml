@@ -1,0 +1,10 @@
+artifact_location: file:///D:/STUDY/Data_Science_Courses/PROJECTS/14.NorthBridge%20TradeFlow/NorthBridge-TradeFlow/Phase_6_ML%20Engineering/mlruns/394662252900529438/models/m-9a6b3431da374f3f9e7545fb88c92c1b/artifacts
+creation_timestamp: 1794259150141
+experiment_id: '394662252900529438'
+last_updated_timestamp: 1794259164062
+model_id: m-9a6b3431da374f3f9e7545fb88c92c1b
+model_type: null
+name: rejection_risk_model
+source_run_id: d9664af6a81444cc85e54362fb165b4b
+status: 2
+status_message: null

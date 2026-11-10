@@ -1,0 +1,6 @@
+# Send only what the API image needs
+*
+!Phase_6_ML Engineering/requirements-api.txt
+!Phase_6_ML Engineering/app
+!Phase_5_Data Science and Predictive Intelligence/notebook/models
+**/__pycache__
