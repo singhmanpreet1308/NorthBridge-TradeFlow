@@ -426,19 +426,21 @@ Prove that the components from Phases 1–6 form **one reproducible system**, cl
 
 ### Results
 
-| Golden thread stage | T-1001 outcome |
-| --- | --- |
-| Capture | v1 at GBP 100,000,000 retained unchanged |
-| Validation | `DEMO_NOTIONAL_MISMATCH` → BLOCK; batch `BATCH-60FD5666D0A1FBAD` reproduced exactly from committed inputs |
-| Amendment | Approval `NB-T1001-APP-001` → v2 at GBP 10,000,000; v1 untouched |
-| Revalidation | v2 PASS; approval and source checksum verified |
-| Simulated reporting | `SIM-T-1001-V2` ACCEPTED; replay creates 0 duplicates |
-| Dashboard | All Power BI KPIs (50 · £664.5M · 100% · 2% · 10% · 98%) reconcile with SQL |
-| Prediction | v1 0.1825 *Flagged* · v2 0.0788 *Not Flagged* (model 1.0.0) |
-| Assistant | Cited, read-only explanation; no stored file changed |
+| Golden thread stage | T-1001 outcome                                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Capture             | v1 at GBP 100,000,000 retained unchanged                                                                       |
+| Validation          | `DEMO_NOTIONAL_MISMATCH` → BLOCK; batch `BATCH-60FD5666D0A1FBAD` reproduced exactly from committed inputs |
+| Amendment           | Approval `NB-T1001-APP-001` → v2 at GBP 10,000,000; v1 untouched                                            |
+| Revalidation        | v2 PASS; approval and source checksum verified                                                                 |
+| Simulated reporting | `SIM-T-1001-V2` ACCEPTED; replay creates 0 duplicates                                                        |
+| Dashboard           | All Power BI KPIs (50 · £664.5M · 100% · 2% · 10% · 98%) reconcile with SQL                              |
+| Prediction          | v1 0.1825 *Flagged* · v2 0.0788 *Not Flagged* (model 1.0.0)                                               |
+| Assistant           | Cited, read-only explanation; no stored file changed                                                           |
 
 - **43 test cases: 40 passed, 0 failed, 3 not run** (cancellation not built; Power BI walkthrough and live-LLM review are manual).
 - **15 Must requirements:** 4 Verified, 9 implemented with stated gaps, 2 In Progress (no role-based authorisation).
+
+![1794325481777](image/README/1794325481777.png)
 
 ### Limitations
 
