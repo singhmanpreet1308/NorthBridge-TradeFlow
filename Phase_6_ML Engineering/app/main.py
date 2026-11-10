@@ -1,6 +1,8 @@
 
 from pathlib import Path
+import hashlib
 import json
+import os
 import joblib
 import pandas as pd
 
@@ -10,17 +12,30 @@ from pydantic import BaseModel, Field, ConfigDict
 # Resolve paths relative to this Python file
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-MODEL_DIR = (
+DEFAULT_MODEL_DIR = (
     PROJECT_ROOT
     / "Phase_5_Data Science and Predictive Intelligence"
     / "notebook"
     / "models"
 )
 
+# NB_MODEL_DIR selects which model version is served (used for rollback).
+MODEL_DIR = Path(os.getenv("NB_MODEL_DIR", str(DEFAULT_MODEL_DIR)))
+MODEL_FILE = MODEL_DIR / "rejection_risk_pipeline.joblib"
+
+# Fingerprint the exact artifact before loading it
+model_sha256 = hashlib.sha256(MODEL_FILE.read_bytes()).hexdigest()
+
+# Optional guard: refuse to start if the artifact is not the expected one
+expected_sha256 = os.getenv("NB_EXPECTED_MODEL_SHA256")
+if expected_sha256 and expected_sha256 != model_sha256:
+    raise RuntimeError(
+        f"Model checksum mismatch in {MODEL_DIR}: "
+        f"expected {expected_sha256}, found {model_sha256}"
+    )
+
 # Load the saved model and metadata
-pipeline = joblib.load(
-    MODEL_DIR / "rejection_risk_pipeline.joblib"
-)
+pipeline = joblib.load(MODEL_FILE)
 
 with open(MODEL_DIR / "model_metadata.json", encoding="utf-8") as f:
     metadata = json.load(f)
@@ -48,7 +63,8 @@ def health():
     return {
         "status": "healthy",
         "model_name": metadata["model_name"],
-        "model_version": metadata["model_version"]
+        "model_version": metadata["model_version"],
+        "model_sha256": model_sha256
     }
 
 

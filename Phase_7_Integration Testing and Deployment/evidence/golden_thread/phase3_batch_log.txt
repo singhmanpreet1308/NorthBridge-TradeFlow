@@ -1,0 +1,178 @@
+
+=== VALIDATION INPUT SUMMARY ===
+Baseline trades: 50
+Independent confirmations: 50
+Seeded test fixtures: 10
+Expected defect scenarios: 10
+
+=== SCHEMA CHECK ===
+Baseline trades: schema columns present
+Seeded errors: schema columns present
+
+=== SEEDED TRADE VALIDATION ===
+OMS-1001 | Detected rules: ['DEMO_NOTIONAL_MISMATCH']
+OMS-1004 | Detected rules: ['DQ-009']
+OMS-1008 | Detected rules: ['DQ-004']
+OMS-1012 | Detected rules: ['DQ-005']
+OMS-1016 | Detected rules: ['DQ-006']
+OMS-1020 | Detected rules: ['DQ-007']
+OMS-1024 | Detected rules: ['DQ-008']
+OMS-1028 | Detected rules: ['DQ-001']
+OMS-1032 | Detected rules: ['DQ-009']
+OMS-1040 | Detected rules: ['DQ-004']
+
+=== ERROR MANIFEST VERIFICATION ===
+trade_id          expected_rule actual_outcome test_result
+  T-1001 DEMO_NOTIONAL_MISMATCH          BLOCK        PASS
+  T-1004                 DQ-009          BLOCK        PASS
+  T-1008                 DQ-004          BLOCK        PASS
+  T-1012                 DQ-005          BLOCK        PASS
+  T-1016                 DQ-006          BLOCK        PASS
+  T-1020                 DQ-007          BLOCK        PASS
+  T-1024                 DQ-008          BLOCK        PASS
+  T-1028                 DQ-001          BLOCK        PASS
+  T-1032                 DQ-009          BLOCK        PASS
+  T-1040                 DQ-004          BLOCK        PASS
+
+Manifest verification: 10/10 passed
+
+=== BASELINE TRADE VALIDATION ===
+
+=== BASELINE VALIDATION CONTROL CHECK ===
+PASS: 49
+BLOCK: 1
+Baseline validation control: PASSED
+
+Validation status summary:
+validation_status
+PASS     49
+BLOCK     1
+
+Blocked baseline trades:
+trade_id  trade_version           detected_rules validation_status
+  T-1001              1 [DEMO_NOTIONAL_MISMATCH]             BLOCK
+
+=== CURATED AND QUARANTINE PREVIEW ===
+Curated records: 49
+Quarantine records: 1
+
+Quarantine preview:
+trade_id  trade_version  notional_amount           detected_rules validation_status
+  T-1001              1      100000000.0 [DEMO_NOTIONAL_MISMATCH]             BLOCK
+
+=== VALIDATION AUDIT METADATA ===
+Validation Run ID: VAL-115729AE7639
+Validated At (UTC): 2026-11-10T15:25:22.716589+00:00
+Curated Records: 49
+Quarantine Records: 1
+
+Quarantine audit preview:
+trade_id  trade_version validation_status           detected_rules validation_run_id                 validated_at_utc                  source_file
+  T-1001              1             BLOCK [DEMO_NOTIONAL_MISMATCH]  VAL-115729AE7639 2026-11-10T15:25:22.716589+00:00 raw/trades/sample_trades.csv
+
+=== SOURCE CHECKSUM VERIFICATION ===
+Source file: raw/trades/sample_trades.csv
+SHA-256: 1d9e1bbf36b0ca6e7d8e2b8d96db05e37b77f34d524ec069932be3b93d5f3c30
+Checksum length: 64
+Source checksum verification: PASS
+
+=== AZURE OUTPUT PATH PREVIEW ===
+Validation policy: 1.1
+Confirmation checksum: 3ff9adc003c3c48ec516475acd223fd48b18c3c98c2d9775cb02b1e5fe4944f8
+Batch ID: BATCH-60FD5666D0A1FBAD
+Curated path: curated/trades/BATCH-60FD5666D0A1FBAD/validated_trades.csv
+Quarantine path: quarantine/trades/BATCH-60FD5666D0A1FBAD/blocked_trades.csv
+Audit path: curated/audit/BATCH-60FD5666D0A1FBAD/validation_summary.json
+
+Output path preparation: PASS
+
+=== EXISTING BATCH CHECK ===
+Curated: NOT FOUND
+Quarantine: NOT FOUND
+Audit: NOT FOUND
+
+No existing batch outputs. Ready for initial write.
+
+=== AZURE OUTPUT PAYLOAD PREPARATION ===
+
+=== SNOWFLAKE CURATED TABLE COLUMNS ===
+['trade_id', 'trade_version', 'source_system', 'source_trade_ref', 'capture_timestamp', 'trade_date', 'counterparty_id', 'product_type', 'currency', 'notional_amount', 'fixed_rate', 'floating_rate_index', 'pay_receive_fixed', 'effective_date', 'maturity_date', 'payment_frequency', 'trade_status', 'amendment_reason', 'created_by', 'record_timestamp', 'detected_rules', 'validation_status', 'validation_run_id', 'validated_at_utc', 'source_file', 'source_checksum_sha256']
+
+=== CURATED COLUMN DATA TYPES ===
+trade_id                      str
+trade_version               int64
+source_system                 str
+source_trade_ref              str
+capture_timestamp             str
+trade_date                    str
+counterparty_id               str
+product_type                  str
+currency                      str
+notional_amount           float64
+fixed_rate                float64
+floating_rate_index           str
+pay_receive_fixed             str
+effective_date                str
+maturity_date                 str
+payment_frequency             str
+trade_status                  str
+amendment_reason          float64
+created_by                    str
+record_timestamp              str
+detected_rules             object
+validation_status             str
+validation_run_id             str
+validated_at_utc              str
+source_file                   str
+source_checksum_sha256        str
+Curated CSV bytes: 16916
+Quarantine CSV bytes: 761
+Audit JSON bytes: 662
+
+Audit summary preview:
+{
+  "batch_id": "BATCH-60FD5666D0A1FBAD",
+  "validation_run_id": "VAL-115729AE7639",
+  "validated_at_utc": "2026-11-10T15:25:22.716589+00:00",
+  "validation_policy_version": "1.1",
+  "source_file": "raw/trades/sample_trades.csv",
+  "source_checksum_sha256": "1d9e1bbf36b0ca6e7d8e2b8d96db05e37b77f34d524ec069932be3b93d5f3c30",
+  "confirmation_file": "raw/confirmations/independent_confirmations.csv",
+  "confirmation_checksum_sha256": "3ff9adc003c3c48ec516475acd223fd48b18c3c98c2d9775cb02b1e5fe4944f8",
+  "total_trades": 50,
+  "curated_records": 49,
+  "quarantine_records": 1,
+  "manifest_tests_passed": 10,
+  "manifest_tests_total": 10,
+  "status": "VALIDATED"
+}
+
+=== AZURE UPLOAD SAFETY TEST ===
+UPLOADED: curated/test/upload_safety_check.txt
+Initial upload: PASS
+Overwrite protection: PASS
+
+=== CONTROLLED AZURE BATCH UPLOAD ===
+UPLOADED: curated/trades/BATCH-60FD5666D0A1FBAD/validated_trades.csv
+VERIFIED: curated/trades/BATCH-60FD5666D0A1FBAD/validated_trades.csv (16916 bytes)
+UPLOADED: quarantine/trades/BATCH-60FD5666D0A1FBAD/blocked_trades.csv
+VERIFIED: quarantine/trades/BATCH-60FD5666D0A1FBAD/blocked_trades.csv (761 bytes)
+UPLOADED: curated/audit/BATCH-60FD5666D0A1FBAD/validation_summary.json
+VERIFIED: curated/audit/BATCH-60FD5666D0A1FBAD/validation_summary.json (662 bytes)
+UPLOADED: curated/audit/BATCH-60FD5666D0A1FBAD/output_checksums.json
+VERIFIED: curated/audit/BATCH-60FD5666D0A1FBAD/output_checksums.json (790 bytes)
+
+=== AUTOMATIC OUTPUT CHECKSUM VERIFICATION ===
+Curated: INTEGRITY PASS
+Quarantine: INTEGRITY PASS
+Audit: INTEGRITY PASS
+All stored output checksums verified.
+
+New batch checksum verification: PASSED
+UPLOADED: curated/audit/BATCH-60FD5666D0A1FBAD/_SUCCESS.json
+VERIFIED: curated/audit/BATCH-60FD5666D0A1FBAD/_SUCCESS.json (422 bytes)
+
+Batch upload completed successfully.
+Completion marker: curated/audit/BATCH-60FD5666D0A1FBAD/_SUCCESS.json
+
+Validation checks completed.

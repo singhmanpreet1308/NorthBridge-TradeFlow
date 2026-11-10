@@ -1,0 +1,4 @@
+tc_id,status,executed_by,executed_on,comment
+UAT-BI-001,,,,Pending: requires Power BI Desktop
+UAT-AI-001,,,,Pending: requires EURI_API_KEY for the live LLM
+TC-OPS-002,Passed,Local Docker run,2026-11-10,Local Docker 29.9.3; evidence/container_smoke_test.md; also runs in CI container job

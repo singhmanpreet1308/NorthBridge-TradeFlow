@@ -1,0 +1,25 @@
+{
+  "description": "Byte-exact copies of the raw inputs used by the Phase 3 validation batch. They live in azure_backup/raw, which is git-ignored, so they are committed here to make the golden thread reproducible from a clean checkout. data/Phase_1 holds earlier copies whose dates were re-saved as dd/mm/yyyy and therefore have different checksums.",
+  "copied_from": "Phase_3_Data Engineering and Governance/azure_backup/raw (mirror of ADLS container northbridge-tradeflow/raw)",
+  "recorded_batch_id": "BATCH-60FD5666D0A1FBAD",
+  "recorded_validation_policy_version": "1.1",
+  "recorded_evidence": "azure_backup/curated/audit/BATCH-60FD5666D0A1FBAD/validation_summary.json (source_checksum_sha256, confirmation_checksum_sha256)",
+  "files": {
+    "trades/sample_trades.csv": {
+      "sha256": "1d9e1bbf36b0ca6e7d8e2b8d96db05e37b77f34d524ec069932be3b93d5f3c30",
+      "matches_recorded": "validation_summary.source_checksum_sha256"
+    },
+    "confirmations/independent_confirmations.csv": {
+      "sha256": "3ff9adc003c3c48ec516475acd223fd48b18c3c98c2d9775cb02b1e5fe4944f8",
+      "matches_recorded": "validation_summary.confirmation_checksum_sha256"
+    },
+    "reference/seeded_errors.csv": {
+      "sha256": "f31e665388722d85a799c544f8836b930d1e118e4a5ee039b5d3dfddce038b15",
+      "matches_recorded": "identical to data/Phase_1/seeded_errors.csv"
+    },
+    "reference/seeded_error_manifest.csv": {
+      "sha256": "2892337f74beb7a64e8ed5f9d378402d9491fb2cc6dfd237c40523468aba4677",
+      "matches_recorded": "identical to data/Phase_1/seeded_error_manifest.csv"
+    }
+  }
+}

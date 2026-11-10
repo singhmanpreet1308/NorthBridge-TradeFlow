@@ -1,0 +1,507 @@
+{
+  "TC-AI-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_health_identifies_the_served_model",
+        "outcome": "passed",
+        "seconds": 0.007
+      }
+    ]
+  },
+  "TC-AI-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_t1001_scores_come_from_the_trained_model",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-AI-003": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_prediction_inputs_exclude_outcome_information",
+        "outcome": "passed",
+        "seconds": 0.005
+      }
+    ]
+  },
+  "TC-AI-004": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_assistant_answer_is_grounded_in_retrieved_evidence",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-AI-005": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_assistant_cannot_change_trade_data",
+        "outcome": "passed",
+        "seconds": 0.0
+      },
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_assistant_exposes_no_write_operations",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-AI-006": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_unknown_trade_is_reported_as_missing_evidence",
+        "outcome": "passed",
+        "seconds": 0.013
+      },
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_prediction_outage_degrades_to_stated_gap",
+        "outcome": "passed",
+        "seconds": 0.013
+      },
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_invented_citation_is_flagged",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-AMD-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_approved_amendment_creates_version_2",
+        "outcome": "passed",
+        "seconds": 0.003
+      }
+    ]
+  },
+  "TC-AMD-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_rejected_amendment_creates_no_version",
+        "outcome": "passed",
+        "seconds": 0.005
+      }
+    ]
+  },
+  "TC-AMD-004": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_duplicate_amendment_load_is_rejected",
+        "outcome": "passed",
+        "seconds": 0.018
+      }
+    ]
+  },
+  "TC-AMD-005": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_stale_version_amendment_raises_conflict",
+        "outcome": "passed",
+        "seconds": 0.006
+      }
+    ]
+  },
+  "TC-AMD-006": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_failed_revalidation_keeps_reporting_blocked",
+        "outcome": "passed",
+        "seconds": 0.006
+      }
+    ]
+  },
+  "TC-AMD-007": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_both_versions_remain_accessible",
+        "outcome": "passed",
+        "seconds": 0.003
+      }
+    ]
+  },
+  "TC-AMD-008": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approval verification failed0]",
+        "outcome": "passed",
+        "seconds": 0.004
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approval verification failed1]",
+        "outcome": "passed",
+        "seconds": 0.004
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approval verification failed2]",
+        "outcome": "passed",
+        "seconds": 0.005
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approved notional mismatch]",
+        "outcome": "passed",
+        "seconds": 0.004
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_source_edited_after_validation_is_refused",
+        "outcome": "passed",
+        "seconds": 0.004
+      }
+    ]
+  },
+  "TC-AMD-009": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_v2_is_evaluated_independently_of_v1",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-BI-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_headline_kpis_reconcile_with_dashboard",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-BI-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_breakdowns_reconcile_with_dashboard",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-BI-003": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_amended_versions_are_not_double_counted",
+        "outcome": "passed",
+        "seconds": 0.002
+      }
+    ]
+  },
+  "TC-CAP-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_valid_trades_are_published_at_version_1_unmodified",
+        "outcome": "passed",
+        "seconds": 0.012
+      }
+    ]
+  },
+  "TC-CAP-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_missing_mandatory_fields_produce_explicit_rule_ids",
+        "outcome": "passed",
+        "seconds": 0.004
+      }
+    ]
+  },
+  "TC-CAP-003": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_replaying_the_same_batch_changes_nothing",
+        "outcome": "passed",
+        "seconds": 0.41
+      }
+    ]
+  },
+  "TC-CAP-004": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_conflicting_trade_id_fails_closed_without_publishing",
+        "outcome": "passed",
+        "seconds": 0.146
+      }
+    ]
+  },
+  "TC-CAP-005": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_t1001_original_notional_is_retained",
+        "outcome": "passed",
+        "seconds": 0.003
+      }
+    ]
+  },
+  "TC-EXC-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_exception_record_is_complete_and_attributable",
+        "outcome": "passed",
+        "seconds": 0.003
+      }
+    ]
+  },
+  "TC-EXC-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_unresolved_exception_blocks_simulated_reporting",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-GT-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_01_golden_thread.py::test_golden_thread_every_stage_passes",
+        "outcome": "passed",
+        "seconds": 0.0
+      },
+      {
+        "test": "tests/test_01_golden_thread.py::test_golden_thread_tells_one_consistent_story",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-NFR-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_06_nfr_failure_replay.py::test_50_trade_batch_processes_within_60_seconds",
+        "outcome": "passed",
+        "seconds": 0.237
+      }
+    ]
+  },
+  "TC-NFR-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_replaying_the_same_batch_changes_nothing",
+        "outcome": "passed",
+        "seconds": 0.41
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_duplicate_amendment_load_is_rejected",
+        "outcome": "passed",
+        "seconds": 0.018
+      },
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_reporting_replay_creates_no_duplicate_submissions",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-NFR-003": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approval verification failed0]",
+        "outcome": "passed",
+        "seconds": 0.004
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approval verification failed1]",
+        "outcome": "passed",
+        "seconds": 0.004
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approval verification failed2]",
+        "outcome": "passed",
+        "seconds": 0.005
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_without_valid_approval_is_refused[<lambda>-Approved notional mismatch]",
+        "outcome": "passed",
+        "seconds": 0.004
+      }
+    ]
+  },
+  "TC-NFR-004": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_both_versions_remain_accessible",
+        "outcome": "passed",
+        "seconds": 0.003
+      },
+      {
+        "test": "tests/test_06_nfr_failure_replay.py::test_t1001_lifecycle_trail_is_complete",
+        "outcome": "passed",
+        "seconds": 0.007
+      }
+    ]
+  },
+  "TC-NFR-005": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_missing_confirmation_in_a_batch_fails_closed",
+        "outcome": "passed",
+        "seconds": 0.132
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_unresolved_exception_blocks_simulated_reporting",
+        "outcome": "passed",
+        "seconds": 0.001
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_failed_revalidation_keeps_reporting_blocked",
+        "outcome": "passed",
+        "seconds": 0.006
+      },
+      {
+        "test": "tests/test_03_exceptions_amendments.py::test_amendment_source_edited_after_validation_is_refused",
+        "outcome": "passed",
+        "seconds": 0.004
+      },
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_prediction_outage_degrades_to_stated_gap",
+        "outcome": "passed",
+        "seconds": 0.013
+      },
+      {
+        "test": "tests/test_06_nfr_failure_replay.py::test_corrupted_output_is_detected_on_replay",
+        "outcome": "passed",
+        "seconds": 0.415
+      },
+      {
+        "test": "tests/test_06_nfr_failure_replay.py::test_partial_batch_is_not_overwritten",
+        "outcome": "passed",
+        "seconds": 0.448
+      },
+      {
+        "test": "tests/test_06_nfr_failure_replay.py::test_blocked_trade_keeps_its_source_reference",
+        "outcome": "passed",
+        "seconds": 0.005
+      }
+    ]
+  },
+  "TC-OPS-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_rollback_restores_known_good_model",
+        "outcome": "passed",
+        "seconds": 0.026
+      },
+      {
+        "test": "tests/test_05_prediction_assistant.py::test_api_refuses_to_start_with_unexpected_model",
+        "outcome": "passed",
+        "seconds": 0.003
+      }
+    ]
+  },
+  "TC-RPT-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_only_current_eligible_versions_are_submitted",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-RPT-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_reporting_outcomes_are_recorded_separately_from_validation",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-RPT-003": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_reporting_replay_creates_no_duplicate_submissions",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-RPT-004": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_04_reporting_dashboard.py::test_simulated_reporting_makes_no_network_calls",
+        "outcome": "passed",
+        "seconds": 0.001
+      }
+    ]
+  },
+  "TC-VAL-001": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_all_seeded_defects_are_detected",
+        "outcome": "passed",
+        "seconds": 0.026
+      }
+    ]
+  },
+  "TC-VAL-002": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_t1001_notional_mismatch_detected_against_confirmation",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  },
+  "TC-VAL-003": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_missing_confirmation_is_unresolved_not_a_match",
+        "outcome": "passed",
+        "seconds": 0.003
+      },
+      {
+        "test": "tests/test_02_capture_validation.py::test_missing_confirmation_in_a_batch_fails_closed",
+        "outcome": "passed",
+        "seconds": 0.132
+      }
+    ]
+  },
+  "TC-VAL-004": {
+    "status": "Passed",
+    "tests": [
+      {
+        "test": "tests/test_02_capture_validation.py::test_batch_identity_reproduces_recorded_phase3_batch",
+        "outcome": "passed",
+        "seconds": 0.0
+      }
+    ]
+  }
+}

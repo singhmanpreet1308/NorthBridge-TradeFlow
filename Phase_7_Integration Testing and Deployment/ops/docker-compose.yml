@@ -1,0 +1,29 @@
+# NorthBridge TradeFlow prediction API.
+#
+# Run from the REPOSITORY ROOT (the build context must include Phase 5's model):
+#   docker compose -f "Phase_7_Integration Testing and Deployment/ops/docker-compose.yml" up -d --build
+#
+# Rollback: see RUNBOOK.md section 6. MODEL_TAG selects the image version and
+# NB_EXPECTED_MODEL_SHA256 makes the container refuse to start on any other model.
+
+name: northbridge
+
+services:
+  prediction-api:
+    build:
+      context: ../..
+      dockerfile: Phase_6_ML Engineering/Dockerfile
+    image: northbridge-prediction-api:${MODEL_TAG:-1.0.0}
+    container_name: northbridge-prediction-api
+    ports:
+      - "8000:8000"
+    environment:
+      NB_EXPECTED_MODEL_SHA256: ${NB_EXPECTED_MODEL_SHA256:-29b46e6ab089522e2740a7475a435a83ca7e644e91d9123327e4d597668c8175}
+    healthcheck:
+      # python:3.12-slim has no curl; use the interpreter that is already there.
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status == 200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped

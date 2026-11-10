@@ -1,0 +1,17 @@
+{
+  "description": "Known-good model versions for the prediction API. Rollback means serving a listed version and confirming /health reports the same model_version and model_sha256. See ops/RUNBOOK.md section 6.",
+  "current": "1.0.0",
+  "versions": {
+    "1.0.0": {
+      "model_name": "Logistic Regression",
+      "artifact": "Phase_5_Data Science and Predictive Intelligence/notebook/models/rejection_risk_pipeline.joblib",
+      "sha256": "29b46e6ab089522e2740a7475a435a83ca7e644e91d9123327e4d597668c8175",
+      "metadata_file": "Phase_5_Data Science and Predictive Intelligence/notebook/models/model_metadata.json",
+      "threshold": 0.1,
+      "git_commit": "849d7d6",
+      "mlflow_run_id": "d9664af6a81444cc85e54362fb165b4b",
+      "test_pr_auc": 0.1376,
+      "status": "approved"
+    }
+  }
+}

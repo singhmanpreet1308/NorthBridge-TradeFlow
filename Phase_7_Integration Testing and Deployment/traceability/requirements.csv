@@ -1,0 +1,16 @@
+req_id,title,priority,business_need,user_story,known_gaps,max_status
+FR-001,Trade Capture,Must,BN-001;BN-004,US-001,Conflicting trade IDs abort the batch rather than being held for review,
+FR-002,Automated Trade Validation,Must,BN-002;BN-005,US-002,,
+FR-003,Independent Confirmation Validation,Must,BN-002;BN-001;BN-005,US-003,,
+FR-004,Exception Management,Must,BN-003;BN-005,US-004,No exception entity with reviewer assignment; quarantine record + approval stand in,
+FR-005,Human Approval Workflow,Must,BN-004;BN-003,US-005,No role-based authorisation; cancellation not implemented,In Progress
+FR-006,Trade Versioning and Audit History,Must,BN-004,US-006,,
+FR-007,Amendment Revalidation,Must,BN-002;BN-005,US-007,,
+FR-008,Simulated Regulatory Reporting,Must,BN-005,US-008,Simulated outcomes are positional not rule-based,
+FR-009,Operational Analytics,Must,BN-006,US-009,Processing-latency KPI is not on the dashboard; .pbix walkthrough is manual,
+FR-010,Predictive Intelligence and AI Investigation,Must,BN-002;BN-003;BN-006,US-010,Live LLM answer quality is a manual UAT (UAT-AI-001),
+NFR-001,Processing Performance,Must,,,Timed on local storage only,
+NFR-002,Reliability and Idempotency,Must,,,,
+NFR-003,Security and Access Control,Must,,,RBAC and denied-attempt logging not implemented,In Progress
+NFR-004,Auditability and Traceability,Must,,,Audit trail reconstructed from component artefacts; no unified event store,
+NFR-005,Safe Failure and Recoverability,Must,,,Bounded retry not exercised outside Airflow,

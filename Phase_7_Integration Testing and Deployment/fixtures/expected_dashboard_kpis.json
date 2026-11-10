@@ -1,0 +1,29 @@
+{
+  "source": "Values as displayed on the Power BI 'Trade Operations & Validation Overview' page (NorthBridge.pbix), transcribed from image/README/1793484754266.png. Counterparty bars are displayed rounded to GBP millions.",
+  "kpis": {
+    "total_trades": 50,
+    "total_gbp_notional_m": 664.5,
+    "current_validation_pass_rate_pct": 100.0,
+    "initial_quarantine_rate_pct": 2.0,
+    "simulated_reject_rate_pct": 10.0,
+    "no_amendment_rate_pct": 98.0,
+    "status_distribution": {
+      "CAPTURED": 49,
+      "AMENDED": 1
+    },
+    "counterparty_notional_m": {
+      "CP-009": 169,
+      "CP-004": 107,
+      "CP-006": 85,
+      "CP-003": 65,
+      "CP-002": 55,
+      "CP-005": 55,
+      "CP-010": 54,
+      "CP-007": 35,
+      "CP-001": 30,
+      "CP-008": 11
+    },
+    "t1001_original_notional_m": 100,
+    "t1001_corrected_notional_m": 10
+  }
+}

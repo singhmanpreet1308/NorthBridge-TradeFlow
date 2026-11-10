@@ -265,7 +265,6 @@ Evidence of model inference on real CME transactions, including risk classificat
 
 An explainable and reproducible predictive intelligence solution combining **synthetic-data model evaluation, trade-level risk scoring, and real-market-data inference testing**, providing the foundation for  ML Engineering & AI Operations Assistant.
 
-
 ## Phase 6 — ML Engineering & AI Operations Assistant
 
 ### Objective
@@ -397,3 +396,50 @@ A containerised ML inference service integrated with a read-only, RAG-powered AI
 ### Limitations
 
 The system uses synthetic trade and validation records with a model trained on simulated outcomes. Predictions support risk assessment but do not determine regulatory reporting eligibility or establish real-world rejection accuracy.
+
+## Phase 7 — Integration Testing, Deployment & Portfolio
+
+### Objective
+
+Prove that the components from Phases 1–6 form **one reproducible system**, close the requirements traceability chain, and prepare an honest demonstration of what was built.
+
+### Scope & Key Activities
+
+- **Golden Thread:** One command replays T-1001 through original capture → exception → approved amendment → revalidation → simulated reporting → dashboard → prediction → assistant explanation, using the real code from each phase.
+- **Integration & UAT Testing:** 49 automated tests mapped to 43 test cases, covering every Must requirement, plus replay, fault injection and model rollback.
+- **Traceability:** The Requirements Traceability Matrix and `Delivery_Tracker.xlsx` are generated from saved test results, not edited by hand.
+- **CI:** A GitHub Actions workflow runs unit, integration and container checks from a clean checkout, without any cloud credentials.
+- **Operations:** Runbook for startup, configuration, teardown, monitoring signals and rollback to a checksum-pinned model version.
+
+### Tools & Technologies
+
+`pytest` · `GitHub Actions` · `Docker Compose` · `SQLite` · `FastAPI TestClient` · `openpyxl`
+
+### Key Deliverables
+
+- `nbit/golden_thread.py` — End-to-end T-1001 run with evidence report.
+- `tests/` — Integration, UAT, NFR and operations test suite.
+- `evidence/RTM.md` — Requirements → tests → results → stated gaps.
+- `.github/workflows/ci.yml` — Core automated checks.
+- `ops/RUNBOOK.md`, `ops/model_registry.json` — Operations and rollback.
+- `docs/ARCHITECTURE.md`, `docs/PORTFOLIO_MAP.md`, `docs/EVIDENCE_INDEX.md`, `docs/INTEGRATION_FINDINGS.md`.
+
+### Results
+
+| Golden thread stage | T-1001 outcome |
+| --- | --- |
+| Capture | v1 at GBP 100,000,000 retained unchanged |
+| Validation | `DEMO_NOTIONAL_MISMATCH` → BLOCK; batch `BATCH-60FD5666D0A1FBAD` reproduced exactly from committed inputs |
+| Amendment | Approval `NB-T1001-APP-001` → v2 at GBP 10,000,000; v1 untouched |
+| Revalidation | v2 PASS; approval and source checksum verified |
+| Simulated reporting | `SIM-T-1001-V2` ACCEPTED; replay creates 0 duplicates |
+| Dashboard | All Power BI KPIs (50 · £664.5M · 100% · 2% · 10% · 98%) reconcile with SQL |
+| Prediction | v1 0.1825 *Flagged* · v2 0.0788 *Not Flagged* (model 1.0.0) |
+| Assistant | Cited, read-only explanation; no stored file changed |
+
+- **43 test cases: 40 passed, 0 failed, 3 not run** (cancellation not built; Power BI walkthrough and live-LLM review are manual).
+- **15 Must requirements:** 4 Verified, 9 implemented with stated gaps, 2 In Progress (no role-based authorisation).
+
+### Limitations
+
+Simulated reporting outcomes are positional (every 10th trade is rejected), not rule-based. CI uses a SQLite port of the Snowflake/dbt SQL and an offline template LLM. Role-based access control, trade cancellation and a unified audit event store were not built. See `Phase_7_Integration Testing and Deployment/docs/INTEGRATION_FINDINGS.md`.

@@ -1,0 +1,17 @@
+# Pinned to the versions in the project's NorthBridge_TradeFlow environment
+# and Phase 6 requirements-api.txt (the model was saved with scikit-learn 1.9.1).
+pandas==3.0.6
+numpy==2.5.3
+scikit-learn==1.9.1
+joblib==1.6.0
+fastapi==0.162.2
+pydantic==2.14.1
+httpx==0.28.1
+requests==2.34.2
+openpyxl==3.1.5
+pytest==9.1.1
+
+# Phase 3 validate.py imports the Azure SDK at module level, even in
+# STORAGE_MODE=local. No Azure call is made in CI.
+azure-identity==1.26.0
+azure-storage-file-datalake==12.26.0

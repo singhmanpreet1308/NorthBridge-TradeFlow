@@ -1,0 +1,19 @@
+# Integration Findings
+
+Issues found while wiring Phases 1–6 together in Phase 7. **Fixed** means changed and covered by a test. **Open** means disclosed and not changed.
+
+| ID | Finding | Severity | Status | Where / test |
+| --- | --- | --- | --- | --- |
+| F-01 | The raw inputs the Phase 3 batch actually used live only in git-ignored `azure_backup/`. The `data/Phase_1` copies were re-saved with dd/mm/yyyy dates and have different checksums, so nothing could be reproduced from a clean checkout. | High | **Fixed** — byte-exact fixtures + SHA-256 manifest + `.gitattributes` | `fixtures/`, TC-VAL-004 |
+| F-02 | `create_amendment.py` and `validate_amendment.py` pointed at `Phase_3_Data_Engineering`, a folder that was later renamed. Both scripts would fail if re-run. | High | **Fixed** — paths corrected; logic moved into importable functions; script behaviour unchanged | Phase 4 `amendments/`, TC-AMD-001 |
+| F-03 | Phase 3 has a hard-coded control expecting exactly 49 PASS / 1 BLOCK. Any new exception (a duplicate trade ID, a missing confirmation) aborts the **whole batch** instead of quarantining one trade. Safe (nothing invalid is published) but unusable with other data. | Medium | **Open** — replace with `curated + quarantine = total` | TC-CAP-004, TC-VAL-003 |
+| F-04 | Simulated reporting outcomes are positional: every 10th current trade by `trade_id` is "rejected", regardless of its content. Because `ROW_NUMBER()` runs over trades not yet submitted, positions shift between runs if new trades arrive. | Medium | **Open** — disclosed in README and dashboard notes | TC-RPT-002 |
+| F-05 | T-1001 v2 has two recorded scores: **0.078747** (Phase 5, tenor = 10) and **0.078752** (Phase 6 assistant, tenor from dates = 10.00137). Both are correct for their inputs; tenor is derived differently. | Low | **Open** — choose one tenor rule for training and serving | GT-08, TC-AI-002 |
+| F-06 | The dashboard's T-1001 table shows `VAL-61AFEC9B6CC3` (policy 1.0, `BATCH-558321D0060990D3`) while the KPI SQL filters `BATCH-60FD5666D0A1FBAD` (policy 1.1). Two batches exist for the same source. KPI values are identical either way. | Low | **Open** — confirm which batch the .pbix should read | UAT-BI-001 step 5 |
+| F-07 | Power BI rounds half away from zero; Python's `round()` rounds half to even. CP-004 (106.5M) and CP-003 (64.5M) looked like reconciliation breaks until rounding was made explicit. | Low | **Fixed** in harness | TC-BI-002 |
+| F-08 | `create_amendment` had no stale-version guard: an approval for v1 could be applied after v2 already existed. | Medium | **Fixed** — `AmendmentConflictError` | TC-AMD-005 |
+| F-09 | `ingest_amendments.py` imported the Snowflake connector at module level, so its offline `verify_batch` checks could not run without Snowflake installed. | Low | **Fixed** — imports moved into `connect_snowflake()` | TC-AMD-008 |
+| F-10 | `Phase_6…/tests/test_ops_assistant.py` reads git-ignored data and a policy-1.0 batch that cannot be regenerated, so it cannot run in CI. | Low | **Open** — excluded in CI; same behaviour covered by TC-AI-004/005/006 against a regenerated batch | `ci.yml` |
+| F-11 | The prediction API (`POST /predict` with features) differs from the Design §13.7 contract (`POST /api/v1/predictions/rejection-risk` with `trade_id` + `trade_version`). | Low | **Open** — documented deviation | ARCHITECTURE §3 |
+| F-12 | Not built: role-based authorisation and denied-attempt logging (NFR-003, FR-005), trade cancellation (TC-AMD-003), exception assignment entity (FR-004), unified audit event store (NFR-004), processing-latency KPI (FR-009). | Medium | **Open** — shown as gaps in the RTM | `evidence/RTM.md` |
+| F-13 | A file named `e 3: Complete data engineering pipeline"` is tracked at the repository root. It looks like output from a mistyped git command. | Info | **Open** — not touched; review and remove | repo root |

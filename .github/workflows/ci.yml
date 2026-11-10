@@ -1,0 +1,119 @@
+name: NorthBridge TradeFlow CI
+
+# Core automated checks: unit tests per phase, the Phase 7 integration and
+# UAT suite with the T-1001 golden thread, and a container smoke test.
+# Needs no secrets: no Azure, Snowflake or LLM calls are made.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PHASE3: "Phase_3_Data Engineering and Governance"
+  PHASE6: "Phase_6_ML Engineering"
+  PHASE7: "Phase_7_Integration Testing and Deployment"
+  STORAGE_MODE: local
+  PYTHONUTF8: "1"
+
+jobs:
+  tests:
+    name: Unit, integration and golden thread
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: "${{ env.PHASE7 }}/requirements-ci.txt"
+
+      - name: Install dependencies
+        run: pip install -r "$PHASE7/requirements-ci.txt"
+
+      - name: Verify fixtures are byte-identical to the recorded Phase 3 inputs
+        working-directory: ${{ env.PHASE7 }}
+        run: |
+          python - <<'EOF'
+          import hashlib, json, pathlib, sys
+          m = json.loads(pathlib.Path("fixtures/fixture_manifest.json").read_text())
+          bad = [f for f, i in m["files"].items()
+                 if hashlib.sha256(pathlib.Path("fixtures/raw", f).read_bytes()).hexdigest() != i["sha256"]]
+          print("fixture checksum mismatch:", bad) if bad else print("all fixtures verified")
+          sys.exit(1 if bad else 0)
+          EOF
+
+      - name: Phase 3 unit tests (validation rules, checksums)
+        working-directory: ${{ env.PHASE3 }}/pipeline
+        run: python -m pytest -q -p no:cacheprovider test_validate.py
+
+      - name: Phase 6 unit tests (API, retriever)
+        working-directory: ${{ env.PHASE6 }}
+        # tests/test_ops_assistant.py reads the git-ignored azure_backup folder
+        # and a policy-1.0 batch that cannot be regenerated; the same assistant
+        # behaviour is covered against a regenerated batch in Phase 7 (TC-AI-*).
+        run: python -m pytest -q -p no:cacheprovider tests/test_api.py tests/test_retriever.py
+
+      - name: Phase 7 integration, UAT, golden thread and RTM
+        working-directory: ${{ env.PHASE7 }}
+        run: python -m nbit.run_all
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase7-evidence
+          path: ${{ env.PHASE7 }}/evidence/
+          retention-days: 30
+
+  container:
+    name: Container smoke test (TC-OPS-002)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -f "$PHASE6/Dockerfile" -t northbridge-prediction-api:ci .
+
+      - name: Start with the registered model checksum pinned
+        run: |
+          SHA=$(python3 -c "import json;r=json.load(open('$PHASE7/ops/model_registry.json'));print(r['versions'][r['current']]['sha256'])")
+          docker run -d --name api -p 8000:8000 -e NB_EXPECTED_MODEL_SHA256="$SHA" northbridge-prediction-api:ci
+          for i in $(seq 1 30); do curl -sf http://localhost:8000/health && break; sleep 1; done
+
+      - name: Check health and a T-1001 v2 prediction
+        run: |
+          python3 - <<'EOF'
+          import json, urllib.request
+          reg = json.load(open("Phase_7_Integration Testing and Deployment/ops/model_registry.json"))
+          known = reg["versions"][reg["current"]]
+          health = json.load(urllib.request.urlopen("http://localhost:8000/health"))
+          assert health["model_version"] == reg["current"], health
+          assert health["model_sha256"] == known["sha256"], health
+          body = json.dumps({"trade_id": "T-1001", "notional_amount": 10000000, "tenor_years": 10,
+                             "currency": "GBP", "product_type": "GBP_IRS", "counterparty_id": "CP-004"}).encode()
+          req = urllib.request.Request("http://localhost:8000/predict", body, {"Content-Type": "application/json"})
+          pred = json.load(urllib.request.urlopen(req))
+          assert abs(pred["risk_score"] - 0.078747) < 1e-6, pred
+          print("health:", health); print("prediction:", pred)
+          EOF
+
+      - name: Container refuses an unexpected model
+        run: |
+          if out=$(docker run --rm -e NB_EXPECTED_MODEL_SHA256=0000 northbridge-prediction-api:ci \
+                     python -c "import app.main" 2>&1); then
+            echo "API started with an unregistered model checksum"; exit 1
+          fi
+          echo "$out" | grep -q "Model checksum mismatch" && echo "refused as expected"
+
+      - name: Logs on failure
+        if: failure()
+        run: docker logs api || true

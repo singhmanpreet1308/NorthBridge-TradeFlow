@@ -1,0 +1,7 @@
+# Byte-exact evidence files.
+# SHA-256 checksums are recorded against these exact bytes (batch IDs,
+# amendment audit records), so Git must never rewrite their line endings.
+Phase_7_*/fixtures/** -text
+Phase_4_*/amendments/*.csv -text
+Phase_4_*/amendments/*.json -text
+Phase_4_*/amendments/validated_output/** -text

@@ -1,0 +1,11 @@
+fixture_trade_id,expected_rule,description,expected_outcome
+T-1001,DEMO_NOTIONAL_MISMATCH,Captured notional differs from confirmation,BLOCK
+T-1004,DQ-009,Missing mandatory counterparty,BLOCK
+T-1008,DQ-004,Negative notional,BLOCK
+T-1012,DQ-005,Non-GBP currency,BLOCK
+T-1016,DQ-006,Maturity precedes effective date,BLOCK
+T-1020,DQ-007,Fixed rate outside demonstration range,BLOCK
+T-1024,DQ-008,Invalid fixed-leg direction,BLOCK
+T-1028,DQ-001,Missing trade ID,BLOCK
+T-1032,DQ-009,Missing floating-rate index,BLOCK
+T-1040,DQ-004,Zero notional,BLOCK

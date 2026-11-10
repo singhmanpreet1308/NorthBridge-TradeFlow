@@ -8,9 +8,6 @@ from pathlib import Path
 from getpass import getpass
 from decimal import Decimal
 
-import snowflake.connector
-from cryptography.hazmat.primitives import serialization
-
 BASE_DIR = Path(__file__).resolve().parent
 TABLE = "NORTHBRIDGE_TRADEFLOW.CURATED.TRADES_VALIDATED"
 
@@ -24,6 +21,11 @@ def sha256(path):
 
 
 def connect_snowflake():
+    # Imported here so verify_batch() can run (e.g. in CI) without the
+    # Snowflake connector or a private key being installed.
+    import snowflake.connector
+    from cryptography.hazmat.primitives import serialization
+
     key_path = (
         Path.home() / ".snowflake" / "northbridge_rsa_key.pem"
     )
