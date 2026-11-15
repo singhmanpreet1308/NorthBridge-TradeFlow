@@ -308,7 +308,9 @@ flowchart TD
 
 **1. Docker — Containerised Prediction API**
 
-The prediction service was packaged in a Docker image named `northbridge-prediction-api`, with port mapping `8000:8000`.![1794268674791](image/README/1794268674791.png)
+The prediction service was packaged in a Docker image named `northbridge-prediction-api`, with port mapping `8000:8000`.
+
+![1794268674791](image/README/1794268674791.png)
 
 **2. FastAPI — Prediction Service**
 
